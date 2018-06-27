@@ -1,5 +1,19 @@
 # getting-started-hello-world
 
+Build and start server:
+
+```
+npm start
+```
+
+Open:
+
+`http://localhost:1234/`
+
+# Getting Started Guide
+
+How to create a new web application:
+
 ## 1. Create new repository at GitHub.
 ## 2. Clone repository locally.
 
@@ -17,6 +31,14 @@ Add private local git exclusions:
   
 ```
 vim .git/info/exclude
+```
+
+Add new commits and push to remote:
+
+```
+git add -A
+git commit -m 'commit message'
+git push -u origin master
 ```
 
 ## 3. Package Manager (npm or Yarn)
@@ -76,10 +98,3 @@ https://parceljs.org/production.html
 parcel build entry.js
 ```
 
-# git
-
-```
-git add -A
-git commit -m 'commit message'
-git push -u origin master
-```
