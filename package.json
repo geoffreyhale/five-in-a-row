@@ -1,0 +1,20 @@
+{
+  "name": "getting-started-hello-world",
+  "version": "1.0.0",
+  "description": "1. Create new repository at GitHub. 2. Clone repository locally. ``` git clone https://github.com/geoffreyhale/getting-started-hello-world.git ``` 3. Bundler (Webpack or Parcel) ``` npm install -g parcel-bundler",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/geoffreyhale/getting-started-hello-world.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/geoffreyhale/getting-started-hello-world/issues"
+  },
+  "homepage": "https://github.com/geoffreyhale/getting-started-hello-world"
+}
