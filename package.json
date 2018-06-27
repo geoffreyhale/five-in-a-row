@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/geoffreyhale/getting-started-hello-world/issues"
   },
-  "homepage": "https://github.com/geoffreyhale/getting-started-hello-world"
+  "homepage": "https://github.com/geoffreyhale/getting-started-hello-world",
+  "dependencies": {
+    "parcel-bundler": "^1.9.3"
+  }
 }
