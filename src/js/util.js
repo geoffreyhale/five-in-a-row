@@ -22,7 +22,10 @@ export default {
         //North
         for (let n = 0; n < 5; n++) {
             if (i - n >= minI) {
-                if (board[i-n][j] == val) {
+                if (board[i-n][j] == 0) {
+                    break;
+                }
+                else if (board[i-n][j] == val) {
                     count.n++;
                 }
             }
@@ -30,7 +33,10 @@ export default {
         //Northeast
         for (let n = 0; n < 5; n++) {
             if (i - n >= minI && j + n <= maxJ) {
-                if (board[i-n][j+n] == val) {
+                if (board[i-n][j+n] == 0) {
+                    break;
+                }
+                else if (board[i-n][j+n] == val) {
                     count.ne++;
                 }
             }
@@ -38,7 +44,10 @@ export default {
         //East
         for (let n = 0; n < 5; n++) {
             if (j + n <= maxJ) {
-                if (board[i][j+n] == val) {
+                if (board[i][j+n] == 0) {
+                    break;
+                }
+                else if (board[i][j+n] == val) {
                     count.e++;
                 }
             }
@@ -46,7 +55,10 @@ export default {
         //Southeast
         for (let n = 0; n < 5; n++) {
             if (i + n <= maxI && j + n <= maxJ) {
-                if (board[i+n][j+n] == val) {
+                if (board[i+n][j+n] == 0) {
+                    break;
+                }
+                else if (board[i+n][j+n] == val) {
                     count.se++;
                 }
             }
@@ -54,7 +66,10 @@ export default {
         //South
         for (let n = 0; n < 5; n++) {
             if (i + n <= maxI) {
-                if (board[i+n][j] == val) {
+                if (board[i+n][j] == 0) {
+                    break;
+                }
+                else if (board[i+n][j] == val) {
                     count.s++;
                 }
             }
@@ -62,7 +77,10 @@ export default {
         //Southwest
         for (let n = 0; n < 5; n++) {
             if (i + n <= maxI && j - n >= minJ) {
-                if (board[i+n][j-n] == val) {
+                if (board[i+n][j-n] == 0) {
+                    break;
+                }
+                else if (board[i+n][j-n] == val) {
                     count.sw++;
                 }
             }
@@ -70,7 +88,10 @@ export default {
         //West
         for (let n = 0; n < 5; n++) {
             if (j - n >= minJ) {
-                if (board[i][j-n] == val) {
+                if (board[i][j-n] == 0) {
+                    break;
+                }
+                else if (board[i][j-n] == val) {
                     count.w++;
                 }
             }
@@ -78,7 +99,10 @@ export default {
         //Northwest
         for (let n = 0; n < 5; n++) {
             if (i - n >= minI && j - n >= minJ) {
-                if (board[i-n][j-n] == val) {
+                if (board[i-n][j-n] == 0) {
+                    break;
+                }
+                else if (board[i-n][j-n] == val) {
                     count.nw++;
                 }
             }
