@@ -1,3 +1,5 @@
+import * as ai from './ai.js';
+
 /**
  * Config
  */
@@ -70,8 +72,15 @@ const cellClick = (e) => {
         updateBoard(i, j, playerTurn);
         checkBoardForFiveInARow(i, j);
 
-        if (playerTurn == 1) { playerTurn = 2 }
-        else if (playerTurn == 2) { playerTurn = 1 }
+        // if (playerTurn == 1) { playerTurn = 2 }
+        // else if (playerTurn == 2) { playerTurn = 1 }
+        /**
+         * @todo belongs in a game loop:
+         */
+        const next = ai.getNextFromBoard(board);
+        updateBoard(next[0],next[1],2);
+        checkBoardForFiveInARow(next[0],next[1]);
+        console.log(board);
     }
 };
 const cellMouseover = (e) => {
@@ -143,6 +152,7 @@ const checkBoardForFiveInARow = (i, j) => {
                     ]
             );
         }
+        console.log(seriesBoardValues);
         if (hasConsecutive(seriesBoardValues, 5)) {
             console.log('Five in a row!');
             document.body.style.background = 'grey';

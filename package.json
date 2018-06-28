@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/geoffreyhale/five-in-a-row",
   "dependencies": {
+    "ai.js": "^1.0.3",
     "modules": "^0.4.0",
     "parcel-bundler": "^1.9.3"
   }
