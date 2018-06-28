@@ -64,29 +64,38 @@ const checkBoardForFiveInARow = (i, j) => {
     }
 };
 
+const transitionToNextTurn = () => {
+    checkBoardForFiveInARow(...lastMove);
+
+    if (!gameover) {
+        if (playerTurn == 1) { playerTurn = 2 }
+        else if (playerTurn == 2) { playerTurn = 1 }
+
+        //@todo shouldn't be here
+        if (USE_COMPUTER_OPPONENT) {
+            const [i,j] = AI.getNextFromBoard(board);
+            updateBoard(i, j, playerTurn);
+            checkBoardForFiveInARow(i, j);
+
+            if (playerTurn == 1) { playerTurn = 2 }
+            else if (playerTurn == 2) { playerTurn = 1 }
+        }
+    }
+};
+
+let lastMove = null;
+const attemptMove = (i, j) => {
+    if (board[i][j] == 0) {
+        updateBoard(i, j, playerTurn);
+        lastMove = [i, j];
+        transitionToNextTurn();
+    }
+};
+
 const cellClick = (e) => {
     const i = e.srcElement.getAttribute('data-i');
     const j = e.srcElement.getAttribute('data-j');
-
-    if (board[i][j] == 0) {
-        updateBoard(i, j, playerTurn);
-        checkBoardForFiveInARow(i, j);
-
-        //@todo shouldn't be here
-        if (!gameover) {
-            if (playerTurn == 1) { playerTurn = 2 }
-            else if (playerTurn == 2) { playerTurn = 1 }
-
-            if (USE_COMPUTER_OPPONENT) {
-                const [i,j] = AI.getNextFromBoard(board);
-                updateBoard(i, j, playerTurn);
-                checkBoardForFiveInARow(i, j);
-
-                if (playerTurn == 1) { playerTurn = 2 }
-                else if (playerTurn == 2) { playerTurn = 1 }
-            }
-        }
-    }
+    attemptMove(i, j);
 };
 const cellMouseover = (e) => {
     const i = e.srcElement.getAttribute('data-i');
