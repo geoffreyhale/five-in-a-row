@@ -1,12 +1,32 @@
 /**
+ * Config
+ */
+const boardWidth = 8;
+const boardHeight = 8;
+
+/**
  * Initialize Board
  *
  * 0 - empty
- * 1 - x
- * 2 - o
+ * 1 - player 1
+ * 2 - player 2
  */
-const boardWidth = 8;
-const boardHeight = 12;
+const getBoardSymbol = (p) => {
+    switch (p) {
+        case 0:
+            return '';
+            break;
+        case 1:
+            return 'x';
+            break;
+        case 2:
+            return 'o';
+            break;
+        default:
+            return '?';
+    }
+};
+
 let board = [];
 for (let i = 0; i < boardHeight; i++) {
     board[i] = [];
@@ -20,14 +40,8 @@ for (let i = 0; i < boardHeight; i++) {
     boardCellElements[i] = [];
     for (let j = 0; j < boardWidth; j++) {
         const cellElement = document.createElement('td');
-        cellElement.setAttribute('data-i', i);
-        cellElement.setAttribute('data-j', j);
-        if (board[i][j] == 1) {
-            cellElement.innerText = 'x';
-        }
-        else if (board[i][j] == 2) {
-            cellElement.innerText = 'o';
-        }
+        cellElement.setAttribute('data-i', i.toString());
+        cellElement.setAttribute('data-j', j.toString());
         boardCellElements[i][j] = cellElement;
     }
 }
@@ -43,18 +57,12 @@ for (let i = 0; i < boardHeight; i++) {
 
 const updateBoard = (i, j, playerTurn) => {
     board[i][j] = playerTurn;
-    const cellElement = boardCellElements[i][j];
-    if (board[i][j] == 1) {
-        cellElement.innerText = 'x';
-    }
-    else if (board[i][j] == 2) {
-        cellElement.innerText = 'o';
-    }
-    boardCellElements[i][j] = cellElement;
+    boardCellElements[i][j].innerText = getBoardSymbol(board[i][j]);
+    boardCellElements[i][j].style.color = 'black';
 };
 
 let playerTurn = 1; //player 1 or 2
-const clickCell = (e) => {
+const cellClick = (e) => {
     const i = e.srcElement.getAttribute('data-i');
     const j = e.srcElement.getAttribute('data-j');
 
@@ -65,16 +73,31 @@ const clickCell = (e) => {
         else if (playerTurn == 2) { playerTurn = 1 }
     }
 };
+const cellMouseover = (e) => {
+    const i = e.srcElement.getAttribute('data-i');
+    const j = e.srcElement.getAttribute('data-j');
+
+    if (board[i][j] == 0) {
+        e.srcElement.innerText = getBoardSymbol(playerTurn);
+        e.srcElement.style.color = 'lightgrey';
+    }
+};
+const cellMouseout = (e) => {
+    const i = e.srcElement.getAttribute('data-i');
+    const j = e.srcElement.getAttribute('data-j');
+
+    if (board[i][j] == 0) {
+        e.srcElement.innerText = '';
+    }
+};
 
 window.onload = (() => {
     document.getElementById('game').appendChild(boardElement);
 
     const tds = document.body.getElementsByTagName('td');
     for (let i = 0; i < tds.length; i++) {
-        tds[i].onclick = clickCell;
-        //     function() {
-        //     tds[i].innerHTML = nextClick;
-        //     updateNextClick();
-        // };
+        tds[i].addEventListener("click", cellClick);
+        tds[i].addEventListener("mouseover", cellMouseover);
+        tds[i].addEventListener("mouseout", cellMouseout);
     }
 });
