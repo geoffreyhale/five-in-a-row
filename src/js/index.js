@@ -1,5 +1,9 @@
 /**
  * Initialize Board
+ *
+ * 0 - empty
+ * 1 - x
+ * 2 - o
  */
 const boardWidth = 8;
 const boardHeight = 12;
@@ -18,6 +22,12 @@ for (let i = 0; i < boardHeight; i++) {
         const cellElement = document.createElement('td');
         cellElement.setAttribute('data-i', i);
         cellElement.setAttribute('data-j', j);
+        if (board[i][j] == 1) {
+            cellElement.innerText = 'x';
+        }
+        else if (board[i][j] == 2) {
+            cellElement.innerText = 'o';
+        }
         boardCellElements[i][j] = cellElement;
     }
 }
@@ -31,12 +41,29 @@ for (let i = 0; i < boardHeight; i++) {
     }
 }
 
+const updateBoard = (i, j, playerTurn) => {
+    board[i][j] = playerTurn;
+    const cellElement = boardCellElements[i][j];
+    if (board[i][j] == 1) {
+        cellElement.innerText = 'x';
+    }
+    else if (board[i][j] == 2) {
+        cellElement.innerText = 'o';
+    }
+    boardCellElements[i][j] = cellElement;
+};
 
+let playerTurn = 1; //player 1 or 2
+const clickCell = (e) => {
+    const i = e.srcElement.getAttribute('data-i');
+    const j = e.srcElement.getAttribute('data-j');
 
-let nextClick = 'x';
-const getNextClick = () => {
-  nextClick = nextClick == 'x' ? 'o' : 'x';
-  return nextClick;
+    if (board[i][j] == 0) {
+        updateBoard(i, j, playerTurn);
+
+        if (playerTurn == 1) { playerTurn = 2 }
+        else if (playerTurn == 2) { playerTurn = 1 }
+    }
 };
 
 window.onload = (() => {
@@ -44,8 +71,10 @@ window.onload = (() => {
 
     const tds = document.body.getElementsByTagName('td');
     for (let i = 0; i < tds.length; i++) {
-        tds[i].onclick = function() {
-            tds[i].innerHTML = getNextClick();
-        };
+        tds[i].onclick = clickCell;
+        //     function() {
+        //     tds[i].innerHTML = nextClick;
+        //     updateNextClick();
+        // };
     }
 });
