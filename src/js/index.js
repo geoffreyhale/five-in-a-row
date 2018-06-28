@@ -1,6 +1,8 @@
-const gameWindow = document.createElement('div');
-gameWindow.appendChild(document.createTextNode('hello world'));
+let nextClick = 'x';
 
 window.onload = (() => {
-    document.getElementById('game').appendChild(gameWindow);
+    const tds = document.body.getElementsByTagName('td');
+    for (let i = 0; i < tds.length; i++) {
+        tds[i].onclick = function() { tds[i].innerHTML = 'x'; };
+    }
 });
