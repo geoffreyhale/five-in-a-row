@@ -2,7 +2,7 @@
  * Config
  */
 const boardWidth = 8;
-const boardHeight = 8;
+const boardHeight = 12;
 
 /**
  * Initialize Board
@@ -68,6 +68,7 @@ const cellClick = (e) => {
 
     if (board[i][j] == 0) {
         updateBoard(i, j, playerTurn);
+        checkBoardForFiveInARow(i, j);
 
         if (playerTurn == 1) { playerTurn = 2 }
         else if (playerTurn == 2) { playerTurn = 1 }
@@ -88,6 +89,64 @@ const cellMouseout = (e) => {
 
     if (board[i][j] == 0) {
         e.srcElement.innerText = '';
+    }
+};
+
+function hasConsecutive(arr, amount) {
+    var last = null;
+    var count = 0;
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] != last) {
+            last = arr[i];
+            count = 0;
+        }
+        count += 1;
+        if (amount <= count) {
+            return true;
+        }
+    }
+    return false;
+}
+const checkBoardForFiveInARow = (i, j) => {
+    i = parseInt(i);
+    j = parseInt(j);
+    const series = {
+        horizontal: [[i,j-4],[i,j-3],[i,j-2],[i,j-1],[i,j],[i,j+1],[i,j+2],[i,j+3],[i,j+4]],
+        vertical: [[i-4,j],[i-3,j],[i-2,j],[i-1,j],[i,j],[i+1,j],[i+2,j],[i+3,j],[i+4,j]],
+        nw: [[i-4,j-4],[i-3,j-3],[i-2,j-2],[i-1,j-1],[i,j],[i+1,j+1],[i+2,j+2],[i+3,j+3],[i+4,j+4]],
+        ne: [[i-4,j+4],[i-3,j+3],[i-2,j+2],[i-1,j+1],[i,j],[i+1,j-1],[i+2,j-2],[i+3,j-3],[i+4,j-4]],
+    };
+    for (let seriesName in series) {
+        const offBoardIndexesToRemoveFromSeries = [];
+        // find out of range indexes
+        for (let n = 0; n < series[seriesName].length; n++) {
+            if (
+                series[seriesName][n][0] < 0
+                || series[seriesName][n][0] > boardHeight - 1
+                || series[seriesName][n][1] < 0
+                || series[seriesName][n][1] > boardWidth - 1
+            ) {
+                offBoardIndexesToRemoveFromSeries.push(n);
+            }
+        }
+        // remove out of range indexes
+        for (let m = offBoardIndexesToRemoveFromSeries.length - 1; m >= 0; m--) {
+            series[seriesName].splice(offBoardIndexesToRemoveFromSeries[m],1);
+        }
+        const seriesBoardValues = [];
+        for (let p = 0; p < series[seriesName].length; p++) {
+            seriesBoardValues.push(
+                board[
+                    series[seriesName][p][0]
+                    ][
+                    series[seriesName][p][1]
+                    ]
+            );
+        }
+        if (hasConsecutive(seriesBoardValues, 5)) {
+            console.log('Five in a row!');
+            document.body.style.background = 'grey';
+        }
     }
 };
 
