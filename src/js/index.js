@@ -8,11 +8,12 @@ import Util from './util.js';
 const BOARD_HEIGHT = 15;
 const BOARD_WIDTH = 15;
 const COLOR_WIN = 'lime';
+const USE_COMPUTER_OPPONENT = true;
 
 /**
  * Globals
  */
-let playerTurn = 1; //player 1 or 2 //@todo isn't really being used atm
+let playerTurn = 1; //player 1 or 2
 let gameover = false;
 
 /**
@@ -73,9 +74,17 @@ const cellClick = (e) => {
 
         //@todo shouldn't be here
         if (!gameover) {
-            const next = AI.getNextFromBoard(board);
-            updateBoard(next[0],next[1],2);
-            checkBoardForFiveInARow(next[0],next[1]);
+            if (playerTurn == 1) { playerTurn = 2 }
+            else if (playerTurn == 2) { playerTurn = 1 }
+
+            if (USE_COMPUTER_OPPONENT) {
+                const [i,j] = AI.getNextFromBoard(board);
+                updateBoard(i, j, playerTurn);
+                checkBoardForFiveInARow(i, j);
+
+                if (playerTurn == 1) { playerTurn = 2 }
+                else if (playerTurn == 2) { playerTurn = 1 }
+            }
         }
     }
 };
