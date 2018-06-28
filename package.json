@@ -1,7 +1,7 @@
 {
-  "name": "getting-started-hello-world",
+  "name": "five-in-a-row",
   "version": "1.0.0",
-  "description": "1. Create new repository at GitHub. 2. Clone repository locally. ``` git clone https://github.com/geoffreyhale/getting-started-hello-world.git ``` 3. Bundler (Webpack or Parcel) ``` npm install -g parcel-bundler",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "parcel src/index.html",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/geoffreyhale/getting-started-hello-world.git"
+    "url": "https://github.com/geoffreyhale/five-in-a-row.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/geoffreyhale/getting-started-hello-world/issues"
+    "url": "https://github.com/geoffreyhale/five-in-a-row/issues"
   },
-  "homepage": "https://github.com/geoffreyhale/getting-started-hello-world",
+  "homepage": "https://github.com/geoffreyhale/five-in-a-row",
   "dependencies": {
     "modules": "^0.4.0",
     "parcel-bundler": "^1.9.3"

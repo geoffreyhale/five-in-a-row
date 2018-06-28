@@ -1,4 +1,14 @@
-# getting-started-hello-world
+# five-in-a-row
+
+A playable frontend version of Pente (includes capture) and bot opponent.
+
+## Launch
+
+Install packages:
+
+```
+npm i
+```
 
 Build and start server:
 
@@ -10,91 +20,16 @@ Open:
 
 `http://localhost:1234/`
 
-# Getting Started Guide
+## How project was initially created:
 
-How to create a new web application:
-
-## 1. Create new repository at GitHub.
-## 2. Clone repository locally.
+1. Create new repository at GitHub called `five-in-a-row`.
+2. Push existing `getting-started-hello-world` project with history.
 
 ```
-git clone https://github.com/geoffreyhale/getting-started-hello-world.git
+cd ~/.../getting-started-hello-world
+git push https://github.com/geoffreyhale/five-in-a-row.git +master:master
+cd ~/.../five-in-a-row
+git clone https://github.com/geoffreyhale/five-in-a-row.git
 ```
 
-Add exclusions:
-
-```
-vim .gitignore
-```
-
-Add private local git exclusions:
-  
-```
-vim .git/info/exclude
-```
-
-Add new commits and push to remote:
-
-```
-git add -A
-git commit -m 'commit message'
-git push -u origin master
-```
-
-## 3. Package Manager (npm or Yarn)
-
-### npm:
-
-Generate `package.json`:
-
-```
-npm init -y
-```
-
-> `-y`: generate without asking any questions
-
-## 4. Bundler (Webpack or Parcel)
-
-### Parcel:
-
-https://parceljs.org/getting_started.html
-
-```
-npm install parcel-bundler
-
-```
-
-Create `index.html`
-
-```
-<html>
-<body>
-  <script src="./index.js"></script>
-</body>
-</html>
-```
-
-Create `index.js`
-
-```
-console.log("hello world");
-```
-
-Build and start server:
-
-```
-parcel index.html
-```
-
-Open:
-
-`http://localhost:1234/`
-
-#### Production:
-
-https://parceljs.org/production.html
-
-```
-parcel build entry.js
-```
-
+Fix/update `package.json` details, etc.
