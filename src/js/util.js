@@ -1,20 +1,4 @@
 export default {
-    getBoardSymbol(p) {
-        switch (p) {
-            case 0: //empty
-                return '';
-                break;
-            case 1: //player 1
-                return 'x';
-                break;
-            case 2: //player 2
-                return 'o';
-                break;
-            default:
-                return '?';
-        }
-    },
-
     /**
      * Cell (Is Part Of) Max In A Row
      *
