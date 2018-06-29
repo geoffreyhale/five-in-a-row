@@ -1,5 +1,3 @@
-import Util from './util.js';
-
 export default {
     getNextFromBoard(board) {
         for (let i = 0; i < board.length; i++) {

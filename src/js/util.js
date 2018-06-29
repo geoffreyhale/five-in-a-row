@@ -1,4 +1,20 @@
 export default {
+    getBoardSymbol(p) {
+        switch (p) {
+            case 0: //empty
+                return '';
+                break;
+            case 1: //player 1
+                return 'x';
+                break;
+            case 2: //player 2
+                return 'o';
+                break;
+            default:
+                return '?';
+        }
+    },
+
     /**
      * Cell (Is Part Of) Max In A Row
      *
@@ -114,5 +130,12 @@ export default {
             count.e + count.w - 1,
             count.se + count.nw - 1
         );
-    }
+    },
+
+    /**
+     * Cell Is (Part Of At Least) Five In A Row
+     */
+    cellIsFIAR (board, i, j) {
+        return 5 <= this.cellMaxIAR(board, i, j);
+    },
 }
