@@ -60,19 +60,7 @@ export default {
         ) {
             const [i,j] = AI.nextMove(this.board);
 
-            this.board[i][j] = this.playerTurn;
-
-            this.previousMove = {
-                player: this.playerTurn,
-                i: i,
-                j: j,
-            };
-
-            if (Util.cellIsFIAR(this.board, i, j)) {
-                this.gameOver = true;
-            }
-
-            this.nextPlayerTurn();
+            this.move(i, j);
 
             this.step();
         }
