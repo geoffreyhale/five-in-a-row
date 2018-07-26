@@ -39,25 +39,25 @@ for (let i = 0; i < Config.BOARD_HEIGHT; i++) {
 export default {
     init(attemptMove, Game) {
         const cellClick = (e) => {
-            const i = e.srcElement.getAttribute('data-i');
-            const j = e.srcElement.getAttribute('data-j');
+            const i = e.target.getAttribute('data-i');
+            const j = e.target.getAttribute('data-j');
             attemptMove(i, j);
         };
         const cellMouseover = (e) => {
-            const i = e.srcElement.getAttribute('data-i');
-            const j = e.srcElement.getAttribute('data-j');
+            const i = e.target.getAttribute('data-i');
+            const j = e.target.getAttribute('data-j');
 
             if (Game.board[i][j] == 0) {
-                e.srcElement.innerText = getBoardSymbol(Game.playerTurn);
-                e.srcElement.style.color = 'lightgrey';
+                e.target.innerText = getBoardSymbol(Game.playerTurn);
+                e.target.style.color = 'lightgrey';
             }
         };
         const cellMouseout = (e) => {
-            const i = e.srcElement.getAttribute('data-i');
-            const j = e.srcElement.getAttribute('data-j');
+            const i = e.target.getAttribute('data-i');
+            const j = e.target.getAttribute('data-j');
 
             if (Game.board[i][j] == 0) {
-                e.srcElement.innerText = '';
+                e.target.innerText = '';
             }
         };
 
