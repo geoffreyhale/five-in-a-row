@@ -1,47 +1,22 @@
-import AI from './ai.js';
-import Config from './config.js';
 import Game from './game.js';
-import UI from './ui.js';
-import Util from './util.js';
+import View from './view.js';
 
-Game.init(Config);
+Game.init();
 
-const updateBoard = (i, j) => {
+const attemptMove = (i, j) => {
     i = parseInt(i);
     j = parseInt(j);
 
-    Game.board[i][j] = Game.playerTurn;
-    UI.boardCellElements[i][j].innerText = Util.getBoardSymbol(Game.board[i][j]);
-    UI.boardCellElements[i][j].style.color = 'black';
+    if (Game.move(i, j)) {
+        View.update(Game.previousMove, Game.gameOver);
 
-    if (Util.cellIsFIAR(Game.board, i, j)) {
-        UI.boardCellElements[i][j].style.background = Config.COLOR_WIN;
-        Game.gameOver = true;
+        Game.step();
+        View.update(Game.previousMove, Game.gameOver);
     }
 };
 
-const processValidMove = (i, j) => {
-    updateBoard(i, j);
-
-    Game.nextPlayerTurn();
-
-    //@todo this doesn't belong here
-    if (Config.USE_COMPUTER_OPPONENT) {
-        const [i,j] = AI.getNextFromBoard(Game.board);
-        updateBoard(i, j);
-
-        Game.nextPlayerTurn();
-    }
-};
-
-const attemptMove = (i, j) => {
-    if (Game.moveIsValid(i,j)) {
-        processValidMove(i, j);
-    }
-};
-
-UI.init(Config, Game, attemptMove);
+View.init(attemptMove, Game);
 
 window.onload = (() => {
-    UI.start(document.getElementById('game'));
+    View.start(document.getElementById('game'));
 });

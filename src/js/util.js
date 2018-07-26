@@ -1,20 +1,4 @@
 export default {
-    getBoardSymbol(p) {
-        switch (p) {
-            case 0: //empty
-                return '';
-                break;
-            case 1: //player 1
-                return 'x';
-                break;
-            case 2: //player 2
-                return 'o';
-                break;
-            default:
-                return '?';
-        }
-    },
-
     /**
      * Cell (Is Part Of) Max In A Row
      *
@@ -38,88 +22,80 @@ export default {
         //North
         for (let n = 0; n < 5; n++) {
             if (i - n >= minI) {
-                if (board[i-n][j] == 0) {
-                    break;
-                }
-                else if (board[i-n][j] == val) {
+                if (board[i-n][j] == val) {
                     count.n++;
+                } else {
+                    break;
                 }
             }
         }
         //Northeast
         for (let n = 0; n < 5; n++) {
             if (i - n >= minI && j + n <= maxJ) {
-                if (board[i-n][j+n] == 0) {
-                    break;
-                }
-                else if (board[i-n][j+n] == val) {
+                if (board[i-n][j+n] == val) {
                     count.ne++;
+                } else {
+                    break;
                 }
             }
         }
         //East
         for (let n = 0; n < 5; n++) {
             if (j + n <= maxJ) {
-                if (board[i][j+n] == 0) {
-                    break;
-                }
-                else if (board[i][j+n] == val) {
+                if (board[i][j+n] == val) {
                     count.e++;
+                } else {
+                    break;
                 }
             }
         }
         //Southeast
         for (let n = 0; n < 5; n++) {
             if (i + n <= maxI && j + n <= maxJ) {
-                if (board[i+n][j+n] == 0) {
-                    break;
-                }
-                else if (board[i+n][j+n] == val) {
+                if (board[i+n][j+n] == val) {
                     count.se++;
+                } else {
+                    break;
                 }
             }
         }
         //South
         for (let n = 0; n < 5; n++) {
             if (i + n <= maxI) {
-                if (board[i+n][j] == 0) {
-                    break;
-                }
-                else if (board[i+n][j] == val) {
+                if (board[i+n][j] == val) {
                     count.s++;
+                } else {
+                    break;
                 }
             }
         }
         //Southwest
         for (let n = 0; n < 5; n++) {
             if (i + n <= maxI && j - n >= minJ) {
-                if (board[i+n][j-n] == 0) {
-                    break;
-                }
-                else if (board[i+n][j-n] == val) {
+                if (board[i+n][j-n] == val) {
                     count.sw++;
+                } else {
+                    break;
                 }
             }
         }
         //West
         for (let n = 0; n < 5; n++) {
             if (j - n >= minJ) {
-                if (board[i][j-n] == 0) {
-                    break;
-                }
-                else if (board[i][j-n] == val) {
+                if (board[i][j-n] == val) {
                     count.w++;
+                } else {
+                    break;
                 }
             }
         }
         //Northwest
         for (let n = 0; n < 5; n++) {
             if (i - n >= minI && j - n >= minJ) {
-                if (board[i-n][j-n] == 0) {
-                    break;
-                }
-                else if (board[i-n][j-n] == val) {
+                if (board[i-n][j-n] == val) {
                     count.nw++;
+                } else {
+                    break;
                 }
             }
         }

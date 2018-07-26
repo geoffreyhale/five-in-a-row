@@ -33,3 +33,8 @@ git clone https://github.com/geoffreyhale/five-in-a-row.git
 ```
 
 Fix/update `package.json` details, etc.
+
+## Notes
+
+- Decouple game logic and view logic
+  - In gameloop, pass game data to view.update(data) 
